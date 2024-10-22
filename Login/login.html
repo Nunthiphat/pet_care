@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Public/styles/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <form action="/login" method="post">
+                <div class="logo">
+                    <img src="/Public/images/pet-care logo.png" alt="Logo">
+                    <h1>Pet Care</h1>
+                </div>
+                <p>Sign In To continue</p>
+                <div class="form-group">
+                    <input type="text" id="email" name="email" placeholder="Email" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <p id="error-message" class="error-message"></p>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="image-section">
+            <img src="/Public/images/Login.jpg" alt="Login">
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+
+        if (error === 'invalid_email') {
+            document.getElementById('error-message').textContent = "Invalid email address!";
+        } else if (error === 'password_wrong') {
+            document.getElementById('error-message').textContent = "Password is wrong!";
+        }
+    </script>
+</body>
+</html>

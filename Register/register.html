@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Public/styles/register.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section">
+            <img src="/Public/images/Register.jpg" alt="Pet Image">
+        </div>
+        <div class="form-section">
+            <form action="/register" method="post">
+                <div class="logo">
+                    <img src="/Public/images/pet-care logo.png" alt="Logo">
+                    <h1>Pet Care</h1>
+                </div>
+                <p>Sign In to continue</p>
+                <div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="username" required>
+                    <input type="text" id="email" name="email" placeholder="Email" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
+                    <p id="error-message" class="error-message"></p>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector("button").addEventListener("click", function(event) {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmpassword").value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match!";
+                event.preventDefault();
+            } else {
+                errorMessage.textContent = "";
+            }
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        if (error === 'email_exists') {
+            document.getElementById('error-message').textContent = "Email already exists!";
+        } else if (error === 'username_exists') {
+            document.getElementById('error-message').textContent = "username already exists!";
+        }
+    </script>
+</body>
+</html>
